@@ -27,6 +27,22 @@ function login()
 	echo $is_valid;
 }
 
+function checkUser() 
+{
+	session_start();
+	if (isset($_SESSION["name"])) {
+		echo 1; 
+	} else {
+		echo 0; 
+	}
+}
+
+function leave() {
+	session_start();
+	unset($_SESSION["name"]);
+}
+
+
 /* @brief 列出所有项
  */
 function list_all() 
@@ -245,7 +261,8 @@ function list_pager()
 		}
 	}
 
-	$result = $mc->exec_query("select id, type, title, pub_time, from_type from t_info order by pub_time desc limit ".$start.",".$end);
+	$start = $start - 1;
+	$result = $mc->exec_query("select id, type, title, pub_time, from_type, left(content, 200) abstract from t_info order by pub_time desc limit ".$start.",".$end);
 	$data = array();
 	if ($result) {
 		while ($row = mysql_fetch_array($result)) {
@@ -255,6 +272,7 @@ function list_pager()
 			array_push($item, $row['title']);	
 			array_push($item, $row['pub_time']);	
 			array_push($item, $row['from_type']);	
+			array_push($item, $row['abstract']);	
 
 			array_push($data, $item);
 		}
@@ -281,38 +299,87 @@ function get_def_vals()
 	echo json_encode($ret, JSON_UNESCAPED_UNICODE);
 }
 
+function search_by_key()
+{
+	$key = $_POST['key'];
+	$mc = new MysqlCli();
+	$mc->connect();
+	$result = null;
+	$result = $mc->exec_query("select id, type, title, pub_time, from_type, left(content, 200) abstract from t_info where title like '%".$key."%' order by pub_time desc limit 10");
+	$ret = array();
+	$data = array();
+	if ($result) {
+		while ($row = mysql_fetch_array($result)) {
+			$item = array();
+			array_push($item, $row['id']);	
+			array_push($item, $row['type']);	
+			array_push($item, $row['title']);	
+			array_push($item, $row['pub_time']);	
+			array_push($item, $row['from_type']);	
+			array_push($item, $row['abstract']);	
+
+			array_push($data, $item);
+		}
+		mysql_free_result($result);
+	}
+	$ret["data"] = $data;
+
+	echo json_encode($ret, JSON_UNESCAPED_UNICODE);
+
+}
+
+function dispatch_url()
+{
+
+}
+
+function dispatch_post() 
+{
+	$func = $_POST['func'];
+	switch ($func) {
+	case 'login':
+		return login();
+	case 'list':
+		return list_all();
+	case 'del_one':
+		return del_one();
+	case 'save':
+		return save();
+	case 'get_menu':
+		return get_menu();
+	case 'get_submenu':
+		return get_submenu();
+	case 'get_one':
+		return get_one();
+	case 'get_titles':
+		return get_titles();
+	case 'get_all_content':
+		return get_all_content();
+	case 'get_content_by_type':
+		return get_content_by_type();
+	case 'search':
+		return search();
+	case 'list_pager':
+		return list_pager();
+	case 'get_def_vals':
+		return get_def_vals();
+	case "checkUser":
+		return checkUser();
+	case "leave":
+		return leave();
+	case 'search_by_key':
+		return search_by_key();
+	case '2':
+		break;
+	default:
+		writelog("no controller");
+	}
+}
+
 //协议处理器
-$func = $_POST['func'];
-switch ($func) {
-case 'login':
-	return login();
-case 'list':
-	return list_all();
-case 'del_one':
-	return del_one();
-case 'save':
-	return save();
-case 'get_menu':
-	return get_menu();
-case 'get_submenu':
-	return get_submenu();
-case 'get_one':
-	return get_one();
-case 'get_titles':
-	return get_titles();
-case 'get_all_content':
-	return get_all_content();
-case 'get_content_by_type':
-	return get_content_by_type();
-case 'search':
-	return search();
-case 'list_pager':
-	return list_pager();
-case 'get_def_vals':
-	return get_def_vals();
-case '2':
-	break;
-default:
-	writelog("no controller");
+if ($_POST['func'] == "") {
+	return dispatch_url();
+} else {
+	return dispatch_post();
 }
 ?>

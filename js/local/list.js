@@ -1,5 +1,15 @@
 var PER_PAGE_CNT = 10; //每页显示个数
 
+function formatDate(now) { 
+	var year=now.getYear() + 1900; 
+	var month=now.getMonth()+1; 
+	var date=now.getDate(); 
+	var hour=now.getHours(); 
+	var minute=now.getMinutes(); 
+	var second=now.getSeconds(); 
+	return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second; 
+} 
+
 function send_file(file, editor, welEditable) {
 	data = new FormData();
 	data.append("file", file);
@@ -78,13 +88,13 @@ function list(page)
 			$.cookies.set("info_total", total);
 		}
 		var data = ret['data'];
-		var menu = $.cookies.get('g_menu');
-		var submenu = $.cookies.get('g_sub_menu');
+		var menu = $.cookies.get('g_blog_menu');
+		var submenu = $.cookies.get('g_blog_sub_menu');
 		var list_html ="<table class='table table-hover table-condensed'><thead><tr><th>#</th><th>类型</th><th>来源</th><th>标题</th><th>时间</th><th>操作</th></tr></thead><tbody>";
 
 		for (var key in data) {
 			var type = menu[parseInt(data[key][1] / 100)][1] + "/" + submenu[parseInt(data[key][1] / 100)][data[key][1]];
-			list_html += "<tr><th scope='row'>" + data[key][0] + "</th><td>" + type +"</td><td>" + $.cookies.get('g_from_type')[data[key][4]]+ "</td><td>" + data[key][2] + "</td><td>" + data[key][3] + "</td><td>";
+			list_html += "<tr><th scope='row'>" + data[key][0] + "</th><td>" + type +"</td><td>" + $.cookies.get('g_blog_from_type')[data[key][4]]+ "</td><td>" + data[key][2] + "</td><td>" + formatDate(new Date(parseInt(data[key][3]) * 1000)) + "</td><td>";
 			list_html +="<input class='btn btn-primary' type='button' onclick='modify_one(" + data[key][0] + ")' value='修改'/> ";
 			list_html +="<input class='btn btn-primary' type='button' onclick='del_one(" + data[key][0] + ")' value='删除'/> ";
 			list_html +="<input class='btn btn-primary' type='button' onclick='view_one("+ data[key][0] + ")' value='预览'/>";
@@ -154,14 +164,14 @@ function modify_one(id)
 
 function view_one(id)
 {
-	var menu = $.cookies.get('g_menu');
+	var menu = $.cookies.get('g_blog_menu');
 	$.post("src/dispatcher.php", {
 		"func" : "get_one", 
 		"id" : id
 	}, function(data) {
 		$.cookies.set("view_id", id);
 		$.cookies.set("view_type", data[3]);
-		var menus = $.cookies.get("g_menu");
+		var menus = $.cookies.get("g_blog_menu");
 		var link = menu[parseInt(data[3]/100)][0];
 		location.href = link;
 	}, "json");
@@ -169,7 +179,7 @@ function view_one(id)
 
 function get_submenu(index) 
 {
-	var data = $.cookies.get('g_sub_menu')[index];
+	var data = $.cookies.get('g_blog_sub_menu')[index];
 	$('#submenu').empty();
 	for (var key in data) {
 		$('#submenu').append("<option value='"+ key +"'>" + data[key] + "</option>");
@@ -180,22 +190,31 @@ function get_submenu(index)
 */
 function init() 
 {
-	var menu = $.cookies.get('g_menu');
+	var menu = $.cookies.get('g_blog_menu');
 	for (var key in menu) {
 		$('#menu').append("<option value='"+ key +"'>" + menu[key][1] + "</option>");
 
 		get_submenu(1);
-		$('#add_li').click();
-		$('#list_li').click();
 	}
 
-	var from_type = $.cookies.get('g_from_type');
+	var from_type = $.cookies.get('g_blog_from_type');
 	for (var key in from_type) {
 		$('#from_type').append("<option value='"+ key +"'>" + from_type[key] + "</option>");
 	}
+
+	$('#add_li').click();
+	$('#list_li').click();
 }
 
 $(document).ready(function() {
+	$.post("src/dispatcher.php", {
+			"func" : "checkUser"
+		}, function(data) {
+		if (data == 0) {
+			window.location.href = "login.html";
+		}
+	}, "text");
+
 	$('#myTab a').click(function (e) {
 		e.preventDefault();
 		$(this).tab('show');
@@ -226,7 +245,6 @@ $(document).ready(function() {
 		var page_html = get_page_html(1, $.cookies.get('info_total'));
 		$('#pager').html(page_html);
 		switch_page(1);
-
 	});
 
 	$('#menu').click(function() {
@@ -245,9 +263,9 @@ $(document).ready(function() {
 	$.post("src/dispatcher.php", {
 		"func" : "get_def_vals"
 	}, function(data) {
-		$.cookies.set("g_menu", data['menu']);	
-		$.cookies.set("g_sub_menu", data['sub_menu']);	
-		$.cookies.set("g_from_type", data['from_type']);	
+		$.cookies.set("g_blog_menu", data['menu']);	
+		$.cookies.set("g_blog_sub_menu", data['sub_menu']);	
+		$.cookies.set("g_blog_from_type", data['from_type']);	
 		init();
 	}, "json");
 });

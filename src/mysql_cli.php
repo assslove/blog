@@ -1,5 +1,7 @@
 <?php
 
+require_once("log.php");
+
 class MysqlCli {
 	private $host;
 	private $username;
@@ -12,7 +14,7 @@ class MysqlCli {
 		$this->host = "localhost";
 		$this->username = "root";
 		$this->passwd = "8459328";
-		$this->db = "limai";
+		$this->db = "blog";
 	}
 
 	public function __destruct() {
@@ -33,6 +35,7 @@ class MysqlCli {
 	}
 
 	public function exec_query($sql) {
+		writelog($sql);
 		return mysql_query($sql, $this->conn);
 	}
 

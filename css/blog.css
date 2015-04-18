@@ -3,7 +3,7 @@
  */
 
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Comic Sans MS";
   color: #555;
 }
 
@@ -85,7 +85,7 @@ h6, .h6 {
 .blog-title {
   margin-top: 30px;
   margin-bottom: 0;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: normal;
 }
 .blog-description {
@@ -105,8 +105,8 @@ h6, .h6 {
 
 /* Sidebar modules for boxing content */
 .sidebar-module {
-  padding: 15px;
-  margin: 0 -15px 15px;
+  padding: 10px;
+  margin: 0 -10px 10px;
 }
 .sidebar-module-inset {
   padding: 15px;
@@ -138,14 +138,14 @@ h6, .h6 {
  */
 
 .blog-post {
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 .blog-post-title {
   margin-bottom: 5px;
-  font-size: 40px;
+  font-size: 24px;
 }
 .blog-post-meta {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   color: #999;
 }
 
