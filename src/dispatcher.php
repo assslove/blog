@@ -262,7 +262,7 @@ function list_pager()
 	}
 
 	$start = $start - 1;
-	$result = $mc->exec_query("select id, type, title, pub_time, from_type, left(content, 200) abstract from t_info order by pub_time desc limit ".$start.",".$end);
+	$result = $mc->exec_query("select id, type, title, pub_time, from_type, left(content, 400) abstract from t_info order by pub_time desc limit ".$start.",".$end);
 	$data = array();
 	if ($result) {
 		while ($row = mysql_fetch_array($result)) {
