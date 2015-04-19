@@ -333,6 +333,48 @@ function dispatch_url()
 
 }
 
+function search_by_type()
+{
+	$start = $_POST['start'];
+	$end = $_POST['end'];
+	$type = $_POST['type'];
+	$ret = array();
+
+	$mc = new MysqlCli();
+	$mc->connect();
+	$result = null;
+	if ($start == 1) { //第1页的时候获取长度
+		$result = $mc->exec_query("select count(*) total from t_info where type = " . $type);
+		if ($result) {
+			$row = mysql_fetch_array($result);
+			$ret["total"] = $row['total'];
+			mysql_free_result($result);
+		}
+	}
+
+	$start = $start - 1;
+	$result = $mc->exec_query("select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info where type=".$type." order by pub_time desc limit ".$start.",".$end);
+	$data = array();
+	if ($result) {
+		while ($row = mysql_fetch_array($result)) {
+			$item = array();
+			array_push($item, $row['id']);	
+			array_push($item, $row['type']);	
+			array_push($item, $row['title']);	
+			array_push($item, $row['pub_time']);	
+			array_push($item, $row['from_type']);	
+			array_push($item, $row['abstract']);	
+
+			array_push($data, $item);
+		}
+		mysql_free_result($result);
+	}
+	$ret["data"] = $data;
+
+	echo json_encode($ret, JSON_UNESCAPED_UNICODE);
+
+}
+
 function dispatch_post() 
 {
 	$func = $_POST['func'];
@@ -369,6 +411,8 @@ function dispatch_post()
 		return leave();
 	case 'search_by_key':
 		return search_by_key();
+	case 'search_by_type':
+		return search_by_type();
 	case '2':
 		break;
 	default:

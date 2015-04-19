@@ -5,6 +5,16 @@ function back_index()
 	window.location.href = "index.html";
 }
 
+/* @brief 获取url参数
+*/
+(function ($) {
+	$.getUrlParam = function (name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]); return null;
+	}
+})(jQuery);
+
 function formatDate(now) { 
 	var year=now.getYear() + 1900; 
 	var month=now.getMonth()+1; 
@@ -32,6 +42,17 @@ function more(id)
 	}, "json");
 }
 
+
+function switch_real_page(page) 
+{
+	var view_type = $.cookies.get('view_type');
+	if (view_type == 0) {
+		list(page);
+	} else if (view_type == 2) {
+		search_by_type(view_type);
+	}
+}
+
 function prev_page(page)
 {
 	if (page <= 1) {
@@ -39,7 +60,7 @@ function prev_page(page)
 	}
 
 	var start = page - 5;
-	list(start);
+	switch_real_page(start);
 }
 
 function next_page(page)
@@ -51,14 +72,12 @@ function next_page(page)
 	}
 
 	start = page + 5;
-	list(start);
-	/*$('#pager').html(get_page_html(start, total));*/
-	//$('#page'+start).addClass('active');
+	switch_real_page(start);
 }
 
 function switch_page(page)
 {
-	list(page);
+	switch_real_page(page);
 }
 
 function get_page_html(page, total)
@@ -140,7 +159,7 @@ function init_mark()
 	var mark_str = "<h4>标签</h4>";
 	for (var i in data) {
 		for (var j in data[i]) {
-			mark_str += "<a href='#'>" + data[i][j] + "</a> "
+			mark_str += "<a href='index.html?action=type&type="+j+"'>" + data[i][j] + "</a> "
 		}
 	}
 
@@ -206,6 +225,51 @@ function backTop()
 	});
 }
 
+function search_by_type(type, page) 
+{
+	var start = (page - 1) * PER_PAGE_CNT + 1;
+	$.post("src/dispatcher.php", {
+		"func": "search_by_type", 
+		"start": start,
+		"end" : PER_PAGE_CNT,
+		"type" : type
+	}, function(ret){
+		if (start == 1) {
+			var total = ret['total'];
+			$.cookies.set("info_total", total);
+		}
+
+		var html_str = "";
+		var data = ret['data'];
+		var menu = $.cookies.get('g_blog_menu');
+		var submenu = $.cookies.get('g_blog_sub_menu');
+		for (var key in data) {
+			var id = data[key][0];
+			var title = data[key][2];
+			var type = data[key][1];
+			var pubtime = parseInt(data[key][3]);
+			var from_type = data[key][4];
+			var content = data[key][5];
+
+			var tmp = "<div class='blog-post'>";
+			tmp += "<h5 class='blog-post-title'>" + title +"</h5>";
+			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
+			tmp += "<p class='blog-post-content'>" + content + "</p>";
+			tmp += "<p class='blog-post-more'><a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a></p>"
+				tmp += "<hr></div>";
+			html_str += tmp;
+		}
+
+		var page_html = get_page_html(page, $.cookies.get('info_total'));
+		html_str += page_html;
+		$('#content').html(html_str);
+
+		$("#pager li").removeClass('active');
+		$('#page'+page).addClass('active');
+	},"json");	
+
+}
+
 $(document).ready(function(){
 	backTop();
 	$.post("src/dispatcher.php", {
@@ -215,7 +279,14 @@ $(document).ready(function(){
 		$.cookies.set("g_blog_sub_menu", data['sub_menu']);	
 		$.cookies.set("g_blog_from_type", data['from_type']);	
 
-		switch_page(1);
+		var action = $.getUrlParam("action");
+		if (action == null) {
+			$.cookies.set("view_type", 0);
+			switch_page(1);
+		} else {
+			$.cookies.set("view_type", $.getUrlParam("type"));
+			search_by_type($.getUrlParam("type"), 1);
+		}
 		init_mark();	
 	}, "json");
 });
