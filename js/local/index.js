@@ -181,6 +181,7 @@ function search()
 		var data = ret["data"];
 		if (data.length == 0) {
 			$('#content').html("无结果");
+			return ;
 		}
 		var html_str="";
 		for (var key in data) {
