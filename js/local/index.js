@@ -40,8 +40,6 @@ function prev_page(page)
 
 	var start = page - 5;
 	list(start);
-	$('#pager').html(get_page_html(start, $.cookies.get('info_total')));
-	$('#page'+start).addClass('active');
 }
 
 function next_page(page)
@@ -54,21 +52,19 @@ function next_page(page)
 
 	start = page + 5;
 	list(start);
-	$('#pager').html(get_page_html(start, total));
-	$('#page'+start).addClass('active');
+	/*$('#pager').html(get_page_html(start, total));*/
+	//$('#page'+start).addClass('active');
 }
 
 function switch_page(page)
 {
 	list(page);
-	$("#pager li").removeClass('active');
-	$('#page'+page).addClass('active');
 }
 
 function get_page_html(page, total)
 {
-	if (page % 5 != 1) return ; //翻页的时候才更改
-	$start = (page - 1) * PER_PAGE_CNT + 1;
+	//var start = (page - 1) * PER_PAGE_CNT + 1;
+	var start = page % 5 + (parseInt(page / 5)) * 5;
 	var page_str = "<p class='blog-pager'><nav><ul class='pager'><li><a href='#' aria-label='Previous' onclick='prev_page(" + page + ")'><span aria-hidden='true'>&laquo;</span></a></li>";
 	var max_page = Math.ceil(total / PER_PAGE_CNT);
 
@@ -118,6 +114,9 @@ function list(page)
 		var page_html = get_page_html(page, $.cookies.get('info_total'));
 		html_str += page_html;
 		$('#content').html(html_str);
+
+		$("#pager li").removeClass('active');
+		$('#page'+page).addClass('active');
 	},"json");	
 }
 
@@ -125,7 +124,7 @@ function get_content(id)
 {
 	$.post("src/dispatcher.php", {
 		"func" : "get_one", 
-		"id" : id
+	"id" : id
 	}, function(data) {
 		var content = "<center><h3>" + data[1] + "</h3></center>";
 		content += "<p class='text-right'>发布时间: 来源: 作者: </p>";
@@ -158,7 +157,7 @@ function search()
 
 	$.post("src/dispatcher.php", {
 		"func" : "search_by_key",
-		"key" : $('#search_key').val()
+	"key" : $('#search_key').val()
 	}, function(ret) {
 		var data = ret["data"];
 		var html_str="";
@@ -175,8 +174,8 @@ function search()
 			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
 			tmp += "<p>" + content + "</p>";
 			tmp += "<p class='blog-post-more'><a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a></p>"
-			tmp += "<hr></div>";
-			html_str += tmp;
+		tmp += "<hr></div>";
+	html_str += tmp;
 		}
 
 		$('#content').html(html_str);

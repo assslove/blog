@@ -122,14 +122,16 @@ h6, .h6 {
 
 /* Pagination */
 .pager {
-  font-size:14px;
-  float:right;
+	margin-top:0px;
+	font-size:14px;
+	font-weight:bold;
+	float:right;
 }
 .pager > li > a {
-  width: 20px;
-  padding: 10px 20px;
-  text-align: center;
-  border-radius: 5px;
+	width: 20px;
+	padding: 10px 20px;
+	text-align: center;
+	border-radius: 5px;
 }
 
 
@@ -138,16 +140,16 @@ h6, .h6 {
  */
 
 .blog-post {
-  margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 .blog-post-title {
-  margin-bottom: 5px;
-  font-size: 22px;
+	margin-bottom: 5px;
+	font-size: 22px;
 }
 .blog-post-meta {
-  margin-bottom: 1px;
-  color: #999;
-  font-size:16px;
+	margin-bottom: 1px;
+	color: #999;
+	font-size:16px;
 }
 
 .blog-post-more {
@@ -162,6 +164,7 @@ h6, .h6 {
 
 .blog-pager {
 	margin-top:0px;
+	padding-top:0px;
 	font-size:14px;
 }
 
@@ -171,14 +174,14 @@ h6, .h6 {
  */
 
 .blog-footer {
-  padding: 30px 0;
-  color: #999;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
+	padding: 30px 0;
+	color: #999;
+	text-align: center;
+	background-color: #f9f9f9;
+	border-top: 1px solid #e5e5e5;
 }
 .blog-footer p:last-child {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 #back-to-top{
