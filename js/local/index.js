@@ -125,7 +125,7 @@ function list(page)
 			tmp += "<h5 class='blog-post-title'>" + title +"</h5>";
 			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
 			tmp += "<p class='blog-post-content'>" + content + "</p>";
-			tmp += "<p class='blog-post-more'><a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a></p>"
+			tmp += "<p class='blog-post-more'><a href='index.html?action=id&id=" + id + "'>查看[" + title + "]全文...</a></p>";
 			tmp += "<hr></div>";
 			html_str += tmp;
 		}
@@ -263,7 +263,7 @@ function search_by_type(type, page)
 			tmp += "<h5 class='blog-post-title'>" + title +"</h5>";
 			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
 			tmp += "<p class='blog-post-content'>" + content + "</p>";
-			tmp += "<p class='blog-post-more'><a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a></p>"
+			tmp += "<p class='blog-post-more'><a href='index.html?action=id&id=" + id + "'>查看[" + title + "]全文...</a></p>";
 				tmp += "<hr></div>";
 			html_str += tmp;
 		}
@@ -291,9 +291,11 @@ $(document).ready(function(){
 		if (action == null) {
 			$.cookies.set("view_type", 0);
 			switch_page(1);
-		} else {
+		} else if (action == "type") {
 			$.cookies.set("view_type", $.getUrlParam("type"));
 			search_by_type($.getUrlParam("type"), 1);
+		} else if (action == "id") {
+			more($.getUrlParam("id"));	
 		}
 		init_mark();	
 	}, "json");
