@@ -179,6 +179,9 @@ function search()
 	"key" : $('#search_key').val()
 	}, function(ret) {
 		var data = ret["data"];
+		if (data.length == 0) {
+			$('#content').html("无结果");
+		}
 		var html_str="";
 		for (var key in data) {
 			var id = data[key][0];
@@ -191,7 +194,7 @@ function search()
 			var tmp = "<div class='blog-post'>";
 			tmp += "<h5 class='blog-post-title'>" + title +"</h5>";
 			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
-			tmp += "<p>" + content + "</p>";
+			tmp += "<p class='blog-post-content'>" + content + "</p>";
 			tmp += "<p class='blog-post-more'><a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a></p>"
 		tmp += "<hr></div>";
 	html_str += tmp;
@@ -239,6 +242,10 @@ function search_by_type(type, page)
 			$.cookies.set("info_total", total);
 		}
 
+		if (total == 0) {
+			$('#content').html("无结果");
+			return ;
+		}
 		var html_str = "";
 		var data = ret['data'];
 		var menu = $.cookies.get('g_blog_menu');
