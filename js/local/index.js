@@ -37,7 +37,7 @@ function more(id)
 		content += " 类型:" + type[data[3]];
 		content += " 来源:" + $.cookies.get("g_blog_from_type")[data[4]];
 		content += "</p><hr/>";
-		content += data[2];
+		content += "<p class='blog-post-content'>" + data[2] + "</p>";
 		$('#content').html(content);
 	}, "json");
 }
@@ -148,7 +148,7 @@ function get_content(id)
 		var content = "<center><h3>" + data[1] + "</h3></center>";
 		content += "<p class='text-right'>发布时间: 来源: 作者: </p>";
 		content += "<hr/>";
-		content += data[2];
+		content += "<p class='blog-post-content'>" + data[2] + "</p>";
 		$('#submenu_title').html(content);
 	}, "json");
 }
