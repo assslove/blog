@@ -1,5 +1,10 @@
 var PER_PAGE_CNT = 10; //每页显示个数
 
+function back_index() 
+{
+	window.location.href = "index.html";
+}
+
 function formatDate(now) { 
 	var year=now.getYear() + 1900; 
 	var month=now.getMonth()+1; 
@@ -17,7 +22,7 @@ function more(id)
 		"id" : id
 	}, function(data) {
 		var content = "<center><h3>" + data[1] + "</h3></center>";
-		content += "<p class='text-right'>发布时间:" + data[5];
+		content += "<p class='text-right blog-post-meta'>发布时间:" + data[5];
 		var type = $.cookies.get('g_blog_sub_menu')[parseInt(data[3] / 100)];
 		content += " 类型:" + type[data[3]];
 		content += " 来源:" + $.cookies.get("g_blog_from_type")[data[4]];
@@ -105,7 +110,7 @@ function list(page)
 			tmp += "<h5 class='blog-post-title'>" + title +"</h5>";
 			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
 			tmp += "<p>" + content + "</p>";
-			tmp += "<a href='#' onclick='more(" + id + ")'>查看<" + title + ">全文...</a>"
+			tmp += "<a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a>"
 			tmp += "<hr></div>";
 			html_str += tmp;
 		}
@@ -169,7 +174,7 @@ function search()
 			tmp += "<h5 class='blog-post-title'>" + title +"</h5>";
 			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
 			tmp += "<p>" + content + "</p>";
-			tmp += "<a href='#' onclick='more(" + id + ")'>查看<" + title + ">全文...</a>"
+			tmp += "<a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a>"
 			tmp += "<hr></div>";
 			html_str += tmp;
 		}
