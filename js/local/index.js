@@ -69,14 +69,14 @@ function get_page_html(page, total)
 {
 	if (page % 5 != 1) return ; //翻页的时候才更改
 	$start = (page - 1) * PER_PAGE_CNT + 1;
-	var page_str = "<nav><ul class='pagination'><li><a href='#' aria-label='Previous' onclick='prev_page(" + page + ")'><span aria-hidden='true'>&laquo;</span></a></li>";
+	var page_str = "<p class='blog-pager'><nav><ul class='pager'><li><a href='#' aria-label='Previous' onclick='prev_page(" + page + ")'><span aria-hidden='true'>&laquo;</span></a></li>";
 	var max_page = Math.ceil(total / PER_PAGE_CNT);
 
 	for (var i = page, j = 0; i <= max_page && j < 5; ++i, ++j) {
 		page_str += "<li id='page" + i + "'><a href='#' onclick='switch_page(" + i + ")'>" + i + "</a></li>";
 	}
 
-	page_str += "<li><a href='#' aria-label='Next' onclick='next_page(" + page + ")'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav>";
+	page_str += "<li><a href='#' aria-label='Next' onclick='next_page(" + page + ")'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav></p>";
 
 	return page_str;
 }
@@ -109,14 +109,14 @@ function list(page)
 			var tmp = "<div class='blog-post'>";
 			tmp += "<h5 class='blog-post-title'>" + title +"</h5>";
 			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
-			tmp += "<p>" + content + "</p>";
-			tmp += "<a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a>"
+			tmp += "<p class='blog-post-content'>" + content + "</p>";
+			tmp += "<p class='blog-post-more'><a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a></p>"
 			tmp += "<hr></div>";
 			html_str += tmp;
 		}
 
 		var page_html = get_page_html(page, $.cookies.get('info_total'));
-		html_str += "<div>" + page_html + "</div>";
+		html_str += page_html;
 		$('#content').html(html_str);
 	},"json");	
 }
@@ -174,7 +174,7 @@ function search()
 			tmp += "<h5 class='blog-post-title'>" + title +"</h5>";
 			tmp += "<p class='blog-post-meta'>" + formatDate(new Date(pubtime * 1000)) + " by <a href='#'>xxmn</a></p>";
 			tmp += "<p>" + content + "</p>";
-			tmp += "<a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a>"
+			tmp += "<p class='blog-post-more'><a href='#' onclick='more(" + id + ")'>查看[" + title + "]全文...</a></p>"
 			tmp += "<hr></div>";
 			html_str += tmp;
 		}
@@ -183,7 +183,32 @@ function search()
 	}, "json");
 }
 
+function backTop() 
+{
+	//首先将#back-to-top隐藏
+	$("#back-to-top").hide();
+	//当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+	$(function() {
+		$(window).scroll(function() {
+			if ($(window).scrollTop() > 100) {
+				$("#back-to-top").fadeIn(1500);
+			} else {
+				$("#back-to-top").fadeOut(1500);
+			}
+		});
+		//当点击跳转链接后，回到页面顶部位置
+		$("#back-to-top").click(function() {
+			$('body,html').animate({
+				scrollTop: 0
+			},
+			1000);
+			return false;
+		});
+	});
+}
+
 $(document).ready(function(){
+	backTop();
 	$.post("src/dispatcher.php", {
 		"func" : "get_def_vals"
 	}, function(data) {
