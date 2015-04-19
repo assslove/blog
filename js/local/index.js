@@ -31,7 +31,7 @@ function more(id)
 		"func" : "get_one", 
 		"id" : id
 	}, function(data) {
-		var content = "<center><h3>" + data[1] + "</h3></center>";
+		var content = "<p class='blog-post-title text-center'>" + data[1] + "</p>";
 		content += "<p class='text-right blog-post-meta'>发布时间:" + data[5];
 		var type = $.cookies.get('g_blog_sub_menu')[parseInt(data[3] / 100)];
 		content += " 类型:" + type[data[3]];
