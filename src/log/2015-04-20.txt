@@ -1016,3 +1016,53 @@
 2015-04-20 20:29:33 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
 2015-04-20 20:29:36 >>> select count(*) total from t_info
 2015-04-20 20:29:36 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:34:08 >>> select count(*) total from t_info
+2015-04-20 20:34:08 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:34:10 >>> select count(*) total from t_info
+2015-04-20 20:34:10 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:35:53 >>> select * from t_info where id=9 limit 1
+2015-04-20 20:35:53 >>> select id, title from t_info where pub_time > 1429532973 order by pub_time asc limit 1
+2015-04-20 20:35:53 >>> select id, title from t_info where pub_time < 1429532973 order by pub_time desc limit 1
+2015-04-20 20:35:59 >>> update t_info set type=501, title='网站性能',content='<p><span style=\"line-height: 1.42857143;\">本站刚建立，虽然每秒只能响应4-5个请求，但是对于个人博客来说已经足够，免费搭建起来的也不错哦!</span><br></p><p><img src=\"img/upload/9872ed9fc22fc182d371c3e9ed316094.png\" style=\"width: 706px; height: 710.006810442679px; float: none;\"></p><p><br></p><p><br></p>',pub_time=1429533359, from_type=0 where id=9
+2015-04-20 20:35:59 >>> select count(*) total from t_info
+2015-04-20 20:35:59 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:37:21 >>> select count(*) total from t_info
+2015-04-20 20:37:21 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:37:22 >>> select count(*) total from t_info
+2015-04-20 20:37:22 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:37:24 >>> select count(*) total from t_info
+2015-04-20 20:37:24 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:37:34 >>> select count(*) total from t_info
+2015-04-20 20:37:34 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:37:35 >>> select * from t_info where id=9 limit 1
+2015-04-20 20:37:35 >>> select id, title from t_info where pub_time > 1429533359 order by pub_time asc limit 1
+2015-04-20 20:37:35 >>> select id, title from t_info where pub_time < 1429533359 order by pub_time desc limit 1
+2015-04-20 20:37:39 >>> update t_info set type=501, title='网站性能',content='<p><span style=\"line-height: 1.42857143;\">本站刚建立，虽然每秒只能响应4-5个请求，但是对于个人博客来说已经足够，免费搭建起来的也不错哦!</span><img src=\"img/upload/9872ed9fc22fc182d371c3e9ed316094.png\" style=\"line-height: 1.42857143; width: 706px; height: 710.006810442679px; float: none;\"></p><p><br></p><p><br></p>',pub_time=1429533459, from_type=0 where id=9
+2015-04-20 20:37:39 >>> select count(*) total from t_info
+2015-04-20 20:37:39 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:37:42 >>> select count(*) total from t_info
+2015-04-20 20:37:42 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:37:50 >>> select count(*) total from t_info
+2015-04-20 20:37:50 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:37:52 >>> select * from t_info where id=9 limit 1
+2015-04-20 20:37:52 >>> select id, title from t_info where pub_time > 1429533459 order by pub_time asc limit 1
+2015-04-20 20:37:52 >>> select id, title from t_info where pub_time < 1429533459 order by pub_time desc limit 1
+2015-04-20 20:38:01 >>> update t_info set type=501, title='网站性能',content='<p><span style=\"line-height: 1.42857143;\">本站刚建立，虽然每秒只能响应4-5个请求，但是对于个人博客来说已经足够，免费搭建起来的也不错哦!</span><img src=\"img/upload/9872ed9fc22fc182d371c3e9ed316094.png\" style=\"line-height: 1.42857143; width: 706px; height: 710.006810442679px; float: none;\"></p>',pub_time=1429533481, from_type=0 where id=9
+2015-04-20 20:38:01 >>> select count(*) total from t_info
+2015-04-20 20:38:01 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:38:03 >>> select count(*) total from t_info
+2015-04-20 20:38:03 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:38:10 >>> select count(*) total from t_info
+2015-04-20 20:38:10 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:39:17 >>> select count(*) total from t_info
+2015-04-20 20:39:17 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:39:19 >>> select * from t_info where id=9 limit 1
+2015-04-20 20:39:19 >>> select id, title from t_info where pub_time > 1429533481 order by pub_time asc limit 1
+2015-04-20 20:39:19 >>> select id, title from t_info where pub_time < 1429533481 order by pub_time desc limit 1
+2015-04-20 20:39:34 >>> update t_info set type=501, title='网站性能',content='<p><span style=\"line-height: 1.42857143;\">本站刚建立，虽然每秒只能响应4-5个请求，但是对于个人博客来说已经足够，免费搭建起来的也不错哦!</span></p>',pub_time=1429533574, from_type=0 where id=9
+2015-04-20 20:39:34 >>> select count(*) total from t_info
+2015-04-20 20:39:34 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:48:30 >>> select count(*) total from t_info
+2015-04-20 20:48:30 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 20:48:55 >>> select count(*) total from t_info
+2015-04-20 20:48:55 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
