@@ -405,6 +405,27 @@ function search_by_type()
 
 }
 
+function backup() 
+{
+	$result = exec('sh ./sql/bak.sh', $out, $status);
+	if ($status == 0) {
+		echo "backup success";
+	} else {
+		echo "backup failed";
+	}
+}
+
+function publish() 
+{
+	$result = exec('sh ./sql/publish.sh', $out, $status);
+	if ($status == 0) {
+		echo "backup success";
+	} else {
+		echo "backup failed";
+	}
+}
+
+
 function dispatch_post() 
 {
 	$func = $_POST['func'];
@@ -443,6 +464,10 @@ function dispatch_post()
 		return search_by_key();
 	case 'search_by_type':
 		return search_by_type();
+	case "backup":
+		return backup();
+	case "publish":
+		return publish();
 	case '2':
 		break;
 	default:

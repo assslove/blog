@@ -207,6 +207,24 @@ function init()
 	$('#list_li').click();
 }
 
+function backup()
+{
+	$.post('src/dispatcher.php', {
+		"func", "backup"
+	}, function(data) {
+		$('#result_str').html(data);
+	}, "text");
+}
+
+function publish()
+{
+	$.post('src/dispatcher.php', {
+		"func", "publish"
+	}, function(data) {
+		$('#result_str').html(data);
+	}, "text");
+}
+
 $(document).ready(function() {
 	$.post("src/dispatcher.php", {
 			"func" : "checkUser"
