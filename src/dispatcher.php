@@ -152,7 +152,7 @@ function get_one()
 	//前一篇
 	$info = array();
 	$page = array();
-	$result = $mc->exec_query("select id, title from t_info where pub_time > " . $tmp . " limit 1");
+	$result = $mc->exec_query("select id, title from t_info where pub_time > " . $tmp . " order by pub_time asc limit 1");
 	if ($result) {
 		$row = mysql_fetch_array($result);
 		array_push($info,$row["id"]);
@@ -164,7 +164,7 @@ function get_one()
 	array_push($ret, $info);
 	//下一篇
 	$info = array();
-	$result = $mc->exec_query("select id, title from t_info where pub_time < " . $tmp . " limit 1");
+	$result = $mc->exec_query("select id, title from t_info where pub_time < " . $tmp . " order by pub_time desc limit 1");
 	if ($result) {
 		$row = mysql_fetch_array($result);
 		array_push($info,$row["id"]);
