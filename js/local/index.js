@@ -41,11 +41,11 @@ function more(id)
 		content += "<p class='blog-post-content'>" + data[2] + "</p>";
 		data = ret[1];
 		if (data[0] > 0) {
-			content += "<p class='blog-post-meta'>上一篇:<a href='#' onclick='more(" + data[0] + ")'>" + data[1] + "</a></p>";
+			content += "<p class='blog-post-meta'>上一篇:<a href='index.html?action=id&id=" + data[0] + "'>" + data[1] + "</a></p>";
 		}
 		data = ret[2];
 		if (data[0] > 0) {
-			content += "<p class='blog-post-meta'>下一篇:<a href='#' onclick='more(" + data[0] + ")'>" + data[1] + "</a></p>";
+			content += "<p class='blog-post-meta'>下一篇:<a href='index.html?action=id&id=" + data[0] + "'>" + data[1] + "</a></p>";
 		}
 
 		content += "<hr/>";
