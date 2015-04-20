@@ -20,8 +20,9 @@ echo "push to github";
 ./create_db.sh
 #拷贝所有程序到远程
 cd /var/www/html/blog/ && cp -r * ~/xxmn
-cd ~/xxmn 
-sh ./src/init.sh
+cd ~/xxmn/src
+sh ./init.sh
+cd ../
 git add *
 git commit -a -m "统一提交"
 git push origin master
