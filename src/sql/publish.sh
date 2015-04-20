@@ -21,6 +21,7 @@ echo "push to github";
 #拷贝所有程序到远程
 cd /var/www/html/blog/ && cp -r * ~/xxmn
 cd ~/xxmn 
+sh ./src/init.sh
 git add *
 git commit -a -m "统一提交"
 git push origin master
