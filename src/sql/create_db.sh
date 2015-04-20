@@ -13,3 +13,4 @@ create_db_sql="create database if not exists ${DB_NAME}"
 mysql -h${DB_IP} -P${DB_PORT} -u${DB_USER} -p${DB_PSWD} -e "$create_db_sql"
 
 mysql -h${DB_IP} -P${DB_PORT} -u${DB_USER} -p${DB_PSWD} ${DB_NAME} < create_db.sql
+mysql -h${DB_IP} -P${DB_PORT} -u${DB_USER} -p${DB_PSWD} ${DB_NAME} < blog.sql
