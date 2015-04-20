@@ -48,6 +48,7 @@ function more(id)
 			content += "<p class='blog-post-meta'>下一篇:<a href='#' onclick='more(" + data[0] + ")'>" + data[1] + "</a></p>";
 		}
 
+		content += "<hr/><div id='uyan_frame'></div>";
 		$('#content').html(content);
 	}, "json");
 }
