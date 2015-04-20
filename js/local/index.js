@@ -30,7 +30,8 @@ function more(id)
 	$.post("src/dispatcher.php", {
 		"func" : "get_one", 
 		"id" : id
-	}, function(data) {
+	}, function(ret) {
+		var data = ret[0];
 		var content = "<p class='blog-post-title text-center'>" + data[1] + "</p>";
 		content += "<p class='text-right blog-post-meta'>发布时间:" + data[5];
 		var type = $.cookies.get('g_blog_sub_menu')[parseInt(data[3] / 100)];
@@ -38,6 +39,15 @@ function more(id)
 		content += " 来源:" + $.cookies.get("g_blog_from_type")[data[4]];
 		content += "</p><hr/>";
 		content += "<p class='blog-post-content'>" + data[2] + "</p>";
+		data = ret[1];
+		if (data[0] > 0) {
+			content += "<p class='blog-post-meta'>上一篇:<a href='#' onclick='more(" + data[0] + ")'>" + data[1] + "</a></p>";
+		}
+		data = ret[2];
+		if (data[0] > 0) {
+			content += "<p class='blog-post-meta'>下一篇:<a href='#' onclick='more(" + data[0] + ")'>" + data[1] + "</a></p>";
+		}
+
 		$('#content').html(content);
 	}, "json");
 }

@@ -135,15 +135,45 @@ function get_one()
 		return ;
 	}
 
+
 	$row = mysql_fetch_array($result);
 	$ret = array();
-	array_push($ret,$id);
-	array_push($ret,$row['title']);
-	array_push($ret,$row['content']);
-	array_push($ret,$row['type']);
-	array_push($ret,$row['from_type']);
-	array_push($ret, date('Y-m-d H:i', $row['pub_time']));
+	$info = array();
+	array_push($info,$id);
+	array_push($info,$row['title']);
+	array_push($info,$row['content']);
+	array_push($info,$row['type']);
+	array_push($info,$row['from_type']);
+	array_push($info, date('Y-m-d H:i', $row['pub_time']));
+	$tmp = $row['pub_time'];
 	mysql_free_result($result);
+	array_push($ret, $info);
+
+	//前一篇
+	$info = array();
+	$page = array();
+	$result = $mc->exec_query("select id, title from t_info where pub_time > " . $tmp . " limit 1");
+	if ($result) {
+		$row = mysql_fetch_array($result);
+		array_push($info,$row["id"]);
+		array_push($info,$row['title']);
+		mysql_free_result($result);
+	} else {
+		array_push($info, 0);
+	}
+	array_push($ret, $info);
+	//下一篇
+	$info = array();
+	$result = $mc->exec_query("select id, title from t_info where pub_time < " . $tmp . " limit 1");
+	if ($result) {
+		$row = mysql_fetch_array($result);
+		array_push($info,$row["id"]);
+		array_push($info,$row['title']);
+		mysql_free_result($result);
+	} else {
+		array_push($info, 0);
+	}
+	array_push($ret, $info);
 
 	echo json_encode($ret, JSON_UNESCAPED_UNICODE); 
 }
