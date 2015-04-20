@@ -149,7 +149,8 @@ function modify_one(id)
 	$.post("src/dispatcher.php", {
 		"func" : "get_one", 
 		"id" : id
-	}, function(data) {
+	}, function(ret) {
+		var data = ret[0];
 		$("#id").val(data[0]);
 		$("#title").val(data[1]);
 		$("#from_type").val(data[4]);
