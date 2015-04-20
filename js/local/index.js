@@ -50,6 +50,7 @@ function more(id)
 
 		content += "<hr/><p><div id='uyan_frame'></div></p>";
 		$('#content').html(content);
+		$('#uyan_frame').show();
 	}, "json");
 }
 
@@ -297,6 +298,7 @@ $(document).ready(function(){
 		$.cookies.set("g_blog_menu", data['menu']);	
 		$.cookies.set("g_blog_sub_menu", data['sub_menu']);	
 		$.cookies.set("g_blog_from_type", data['from_type']);	
+		$('#uyan_frame').hide();
 
 		var action = $.getUrlParam("action");
 		if (action == null) {
