@@ -86,7 +86,7 @@ h6, .h6 {
   margin-top: 30px;
   margin-bottom: 0;
   font-size: 30px;
-  font-weight: normal;
+  font-weight: bold;
 }
 .blog-description {
   font-size: 20px;
@@ -146,6 +146,7 @@ h6, .h6 {
 	margin-bottom: 3px;
 	margin-top: 10px;
 	font-size: 20px;
+	font-weight:bold;
 }
 .blog-post-meta {
 	margin-top: 0px;
