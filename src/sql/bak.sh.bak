@@ -1,0 +1,1 @@
+mysqldump -uadminkt2Nj93 -ptkV8Rpma-M1G  blog > blog.sql
