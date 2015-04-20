@@ -1,7 +1,7 @@
 #一键发布功能
 
 # 备份mysql 全库
-ssh 5532215afcf933acf700000f@xxmn-limai.rhcloud.com 'sh ./bak.sh'
+ssh 5532215afcf933acf700000f@xxmn-limai.rhcloud.com 'cd app-root/repo/src/sql && sh ./bak.sh'
 echo "remote back sql & img";
 
 #拷贝到本地
