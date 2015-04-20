@@ -84,14 +84,14 @@ function get_page_html(page, total)
 {
 	//var start = (page - 1) * PER_PAGE_CNT + 1;
 	var start = page % 5 + (parseInt(page / 5)) * 5;
-	var page_str = "<p class='blog-pager'><nav><ul class='pager'><li><a href='#' aria-label='Previous' onclick='prev_page(" + page + ")'><span aria-hidden='true'>&laquo;</span></a></li>";
+	var page_str = "<div class='blog-pager' id='pager'><nav><ul class='pagination'><li><a href='#' aria-label='Previous' onclick='prev_page(" + page + ")'><span aria-hidden='true'>&laquo;</span></a></li>";
 	var max_page = Math.ceil(total / PER_PAGE_CNT);
 
 	for (var i = page, j = 0; i <= max_page && j < 5; ++i, ++j) {
 		page_str += "<li id='page" + i + "'><a href='#' onclick='switch_page(" + i + ")'>" + i + "</a></li>";
 	}
 
-	page_str += "<li><a href='#' aria-label='Next' onclick='next_page(" + page + ")'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav></p>";
+	page_str += "<li><a href='#' aria-label='Next' onclick='next_page(" + page + ")'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav></div>";
 
 	return page_str;
 }
