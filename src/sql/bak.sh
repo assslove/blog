@@ -1,5 +1,7 @@
+# 备份远程
 # 备份mysql 全库
-mysqldump -uroot -p8459328 blog > blog.sql
+ssh 5532215afcf933acf700000f@xxmn-limai.rhcloud.com 'mysqldump -uadminkt2Nj93 -ptkV8Rpma-M1G blog > blog.sql'
 
 # 备份图片为库
-tar -zcvf upload.tar.gz ./../../img/upload/
+ssh 5532215afcf933acf700000f@xxmn-limai.rhcloud.com 'tar -zcvf upload.tar.gz ./../../img/upload/'
+
