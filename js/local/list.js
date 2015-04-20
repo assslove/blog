@@ -210,7 +210,7 @@ function init()
 function backup()
 {
 	$.post('src/dispatcher.php', {
-		"func", "backup"
+		"func": "backup"
 	}, function(data) {
 		$('#result_str').html(data);
 	}, "text");
@@ -219,7 +219,7 @@ function backup()
 function publish()
 {
 	$.post('src/dispatcher.php', {
-		"func", "publish"
+		"func": "publish"
 	}, function(data) {
 		$('#result_str').html(data);
 	}, "text");

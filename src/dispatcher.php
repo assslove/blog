@@ -419,9 +419,9 @@ function publish()
 {
 	$result = exec('sh ./sql/publish.sh', $out, $status);
 	if ($status == 0) {
-		echo "backup success";
+		echo "publish success";
 	} else {
-		echo "backup failed";
+		echo "publish failed";
 	}
 }
 
