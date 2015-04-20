@@ -163,6 +163,7 @@ h6, .h6 {
 
 .blog-post-content {
 	font-size:16px;
+	overflow:hidden;
 }
 
 .blog-pager {
@@ -236,3 +237,5 @@ hr {
 }
 
 element.style {display: none;}
+
+#content img { max-width:600px;myimg:expression(onload=function(){ this.style.width=(this.offsetWidth > 600)?"600px":"auto"});}

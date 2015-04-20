@@ -9,4 +9,5 @@ create table t_info (
 	`author` varchar(64) COMMENT '作者',
 	`from_type` tinyint default '0' COMMENT '来源',
 	primary key(id)
+	index(pub_time),
 ) Engine=InnoDB, charset=utf8;
