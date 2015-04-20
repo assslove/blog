@@ -8,6 +8,6 @@ create table t_info (
 	`pub_time` int unsigned COMMENT '发表时间',
 	`author` varchar(64) COMMENT '作者',
 	`from_type` tinyint default '0' COMMENT '来源',
-	primary key(id)
+	primary key(id),
 	index(pub_time),
 ) Engine=InnoDB, charset=utf8;
