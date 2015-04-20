@@ -215,8 +215,8 @@ h6, .h6 {
 	background:#d1d1d1;
 	border-radius:6px;
 	display:block;
-	height:100px;
-	width:100px;
+	height:60px;
+	width:60px;
 	background:#d1d1d1 url(../img/arrow_up.png) no-repeat center center;
 	margin-bottom:5px;
 	-moz-transition:background 1s;
