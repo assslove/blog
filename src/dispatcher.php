@@ -417,7 +417,7 @@ function backup()
 
 function publish() 
 {
-	$result = system('cd sql && sh publish.sh', $status);
+	$result = exec('cd sql && sh publish.sh', $out, $status);
 	if ($status == 0) {
 		echo "publish success";
 	} else {
