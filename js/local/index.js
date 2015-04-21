@@ -71,7 +71,7 @@ function switch_real_page(page)
 
 function prev_page(page)
 {
-	if (page == 0) {
+	if (page == 1) {
 		return ;
 	}
 
