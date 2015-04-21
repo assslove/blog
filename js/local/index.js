@@ -71,11 +71,14 @@ function switch_real_page(page)
 
 function prev_page(page)
 {
-	if (page == 1) {
+	if (page <= 1) {
 		return ;
 	}
 
 	var start = page - 5;
+	if (start < 1) {
+		start = 1;
+	}
 	switch_real_page(start);
 }
 
@@ -107,7 +110,7 @@ function get_page_html(page, total)
 	var page_str = "<div class='blog-pager' id='pager'><nav><ul class='pagination'><li><a href='#' aria-label='Previous' onclick='prev_page(" + page + ")'><span aria-hidden='true'>&laquo;</span></a></li>";
 	var max_page = Math.ceil(total / PER_PAGE_CNT);
 
-	for (var i = page, j = 0; i <= max_page && j < 5; ++i, ++j) {
+	for (var i = page, j = 0; i >= 1 && i <= max_page && j < 5; ++i, ++j) {
 		page_str += "<li id='page" + i + "'><a href='#' onclick='switch_page(" + i + ")'>" + i + "</a></li>";
 	}
 
