@@ -11,7 +11,7 @@ scp 5532215afcf933acf700000f@xxmn-limai.rhcloud.com:~/app-root/repo/src/sql/uplo
 #echo "cpy to local";
 
 #拷贝到工作目录 并解压照片
-cp upload.tar.gz /var/www/html/blog && cd /var/www/html/blog && tar -zxvf upload.tar.gz && rm -f upload.tar.gz
+cp upload.tar.gz /var/www/html/blog/img/upload/ && cd /var/www/html/blog/img/upload/ && tar -zxvf upload.tar.gz && rm -f upload.tar.gz
 #照片加入本地库中
 cd /var/www/html/blog/img/upload && git add *
 git commit -a -m "统一提交"
