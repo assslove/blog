@@ -1,4 +1,4 @@
-var PER_PAGE_CNT = 10; //每页显示个数
+var PER_PAGE_CNT = 5; //每页显示个数
 
 function back_index() 
 {
