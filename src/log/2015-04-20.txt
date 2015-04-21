@@ -1120,3 +1120,25 @@
 2015-04-20 21:15:59 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
 2015-04-20 21:16:00 >>> select count(*) total from t_info
 2015-04-20 21:16:00 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 21:16:39 >>> select count(*) total from t_info
+2015-04-20 21:16:39 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 21:16:44 >>> select count(*) total from t_info
+2015-04-20 21:16:44 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 21:16:48 >>> select count(*) total from t_info
+2015-04-20 21:16:48 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 21:16:49 >>> select count(*) total from t_info
+2015-04-20 21:16:49 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 21:16:53 >>> select count(*) total from t_info
+2015-04-20 21:16:53 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 21:17:02 >>> select count(*) total from t_info
+2015-04-20 21:17:02 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 21:17:04 >>> select * from t_info where id=7 limit 1
+2015-04-20 21:17:04 >>> select id, title from t_info where pub_time > 1429518081 order by pub_time asc limit 1
+2015-04-20 21:17:04 >>> select id, title from t_info where pub_time < 1429518081 order by pub_time desc limit 1
+2015-04-20 21:17:09 >>> select count(*) total from t_info
+2015-04-20 21:17:09 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
+2015-04-20 21:17:10 >>> select * from t_info where id=7 limit 1
+2015-04-20 21:17:10 >>> select id, title from t_info where pub_time > 1429518081 order by pub_time asc limit 1
+2015-04-20 21:17:10 >>> select id, title from t_info where pub_time < 1429518081 order by pub_time desc limit 1
+2015-04-20 21:17:28 >>> select count(*) total from t_info
+2015-04-20 21:17:28 >>> select id, type, title, pub_time, from_type, LEFT(content, 200)  abstract from t_info order by pub_time desc limit 0,10
