@@ -39,6 +39,10 @@ function more(id)
 		content += " 来源:" + $.cookies.get("g_blog_from_type")[data[4]];
 		content += "</p><hr/>";
 		content += "<p class='blog-post-content'>" + data[2] + "</p>";
+		if (data[4] == 0) {
+			content += "<p>转载请注明出处:<a href='http://xiaoxiaomanong.tk'>小小码农tk</a></p>";
+		}
+
 		data = ret[1];
 		if (data[0] > 0) {
 			content += "<p class='blog-post-meta'>上一篇:<a href='index.html?action=id&id=" + data[0] + "'>" + data[1] + "</a></p>";
