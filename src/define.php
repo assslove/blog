@@ -11,6 +11,7 @@ $menu = array(
 	"5"=> array("performance", "性能优化"),
 	"6"=> array("game", "游戏后台"),
 	"7"=> array("interview", "面试总结"),
+	"8"=> array("database", "数据库"),
 	"20"=> array("personal", "个人心情")
 );
 
@@ -23,6 +24,8 @@ $sub_menu = array(
 		"105" => "PHP",
 		"106" => "JS",
 		"107" => "Shell",
+		"108" => "C#"
+		"109" => "NodeJS"
 	),
 	"2" => array(
 		"201"=>"Redis", 
@@ -50,6 +53,10 @@ $sub_menu = array(
 	"7" => array(
 		"701"=>"面试总结",
 	),
+	"8" => array(
+		"801"=>"MYSQL",
+	),
+
 
 	"20" => array(
 		"2001"=>"个人杂文",
